@@ -3,7 +3,7 @@ function [ptleGHidx_full,lastcrosstime_full,timelength2lastcross_full,lastcrossl
 addpath /nethome/ycheng1/matlib
 % The new post-processing tool for ascii output, avoiding using netcdf features:
 % 2016/10/14 starting 
-% use new MATLAN function (available after 2016a) tabularTextDatastore('traj_file_01','TreatAsMissing','NA','MissingValue',0);
+% use new MATLAB function (available after 2016a) tabularTextDatastore('traj_file_01','TreatAsMissing','NA','MissingValue',0);
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % set the Sections coordinates GH and ACT
@@ -105,6 +105,8 @@ end
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Last nested loop, determine the timing of GHline crossing, only looping through leakage particles
+if exist('ptleGHidx')==1 
+
 for pp=1:length(ptleGHidx) 
 lc_tidx(pp)=round(max(locidx{ptleGHidx(pp)-totalparticle*(trajfileidx-1)}(:,2)));   %time index for last crossing   
 reldatenum(pp)=releasedatenum(ptleGHidx(pp)-totalparticle*(trajfileidx-1));       %particle release date >>> used below, dont worry
@@ -141,7 +143,7 @@ ptleGHidx_full=[ptleGHidx_full,ptleGHidx];
 end
 
 clear lastcrosstime lastcrosslon lastcrosslat lastcrossdep timelength2lastcross ptleGHidx
-
+end % the if condition to determine if ptleGHidx exists
 end % the loop for files
 % return [ptleGHidx,ptleGHidx_old,lastcrosstime,lastcrosstime_old, timelength2lastcross, timelength2lastcross_old]
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

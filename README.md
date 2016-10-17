@@ -5,7 +5,7 @@ The [Connectivity Modeling System (CMS)](https://www.researchgate.net/profile/Cl
 
 Since 2014, I have been using CMS to quantify Agulhas Leakage, by seeding particles in the Agulhas Current jet and track the number of particles that end up on the other side of the GoodHope line and the timing of such crossings. By summing up the crossing particles at each time step, we create a time series of Agulhas leakage. More details can be found in my recent [paper](http://journals.ametsoc.org/doi/abs/10.1175/JCLI-D-15-0568.1). 
 
-### Motivations
+### Motivation
 As the coupled model keeps generating more outputs, running CMS like before becomes less practical. The CMS was not designed to track particles at such scale for such a long period of time (multiple decades). Also, I ran into some issues when I tried submitting CMS jobs to the UM cluster -- a continuous job cannot complete within the wall time and memory limits. So, I came up with a walk-around to divide the multi-decade-long job into several smaller chunks, ensuring that such jobs can complete successfully. Moreover, by doing that, I can easily extend the leakage time-series without repeating the previous years. 
 
 One day, folks from Center for Computational Science (CCS) told me that I was suspended from submitting more CMS jobs because such jobs drained the system memory and significantly dragged down the performance of the cluster. Some staffs helped me to test run CMS on an isolated filesystem, and we eventually identified that the vast part of memory usage was caused by outputting as NetCDF files. So they advised all CMS users on the cluster to set the output format to ASCII. 
